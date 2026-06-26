@@ -21,13 +21,20 @@ public class SwaggerConfig {
 	@Bean
 	OpenAPI springBlogPessoalOpenAPI() {
 		return new OpenAPI()
-				.info(new Info().title("Projeto Blog Pessoal").description("Projeto Blog Pessoal - Generation Brasil")
+				.info(new Info()
+						.title("Projeto Blog Pessoal")
+						.description("API REST do Projeto Blog Pessoal")
 						.version("v0.0.1")
-						.license(new License().name("Generation Brasil").url("https://brazil.generation.org/"))
-						.contact(new Contact().name("Generation Brasil").url("https://github.com/conteudoGeneration")
-								.email("conteudogeneration@generation.org")))
-				.externalDocs(
-						new ExternalDocumentation().description("Github").url("https://github.com/conteudoGeneration/"))
+						.license(new License()
+								.name("Github")
+								.url("https://github.com/"))
+						.contact(new Contact()
+								.name("Ana Karina")
+								.url("https://github.com/")
+								.email("seu-email@email.com")))
+				.externalDocs(new ExternalDocumentation()
+						.description("Github")
+						.url("https://github.com/"))
 				.components(new Components().addSecuritySchemes("jwt_auth", createSecurityScheme()))
 				.addSecurityItem(new SecurityRequirement().addList("jwt_auth"));
 	}
@@ -42,12 +49,12 @@ public class SwaggerConfig {
 
 				apiResponses.addApiResponse("200", createApiResponse("Sucesso!"));
 				apiResponses.addApiResponse("201", createApiResponse("Objeto Persistido!"));
-				apiResponses.addApiResponse("204", createApiResponse("Objeto Excluído!"));
-				apiResponses.addApiResponse("400", createApiResponse("Erro na Requisição!"));
-				apiResponses.addApiResponse("401", createApiResponse("Acesso Não Autorizado!"));
+				apiResponses.addApiResponse("204", createApiResponse("Objeto Excluido!"));
+				apiResponses.addApiResponse("400", createApiResponse("Erro na Requisicao!"));
+				apiResponses.addApiResponse("401", createApiResponse("Acesso Nao Autorizado!"));
 				apiResponses.addApiResponse("403", createApiResponse("Acesso Proibido!"));
-				apiResponses.addApiResponse("404", createApiResponse("Objeto Não Encontrado!"));
-				apiResponses.addApiResponse("500", createApiResponse("Erro na Aplicação!"));
+				apiResponses.addApiResponse("404", createApiResponse("Objeto Nao Encontrado!"));
+				apiResponses.addApiResponse("500", createApiResponse("Erro na Aplicacao!"));
 
 			}));
 		};
@@ -58,7 +65,11 @@ public class SwaggerConfig {
 	}
 
 	private SecurityScheme createSecurityScheme() {
-		return new SecurityScheme().name("jwt_auth").type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")
-				.description("Insira apenas o token JWT (a palavra 'Bearer' será adicionada automaticamente)");
+		return new SecurityScheme()
+				.name("jwt_auth")
+				.type(SecurityScheme.Type.HTTP)
+				.scheme("bearer")
+				.bearerFormat("JWT")
+				.description("Insira apenas o token JWT. A palavra Bearer sera adicionada automaticamente.");
 	}
 }
